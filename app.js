@@ -22,7 +22,7 @@ const app = express();
 
 
 var credentials = {
-  emailAddress: "admin",
+  emailAddress: "somya.ricky@gmail.com",
   password: "admin@123",
 };
 var newAdmin = new User(credentials);

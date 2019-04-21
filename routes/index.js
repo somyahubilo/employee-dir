@@ -5,8 +5,8 @@ const { User } = require("./../models/users");
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-  const data = User.find({});
-  res.render('index', { title: data[0].emailAddress });
+  const data = await User.find({});
+  res.send(data)
 });
 
 module.exports = router;
