@@ -16,7 +16,25 @@ const connection = mongoose.connect(
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
+const { User } = require ("./models/users");
+
 const app = express();
+
+
+var credentials = {
+  emailAddress: "admin",
+  password: "admin@123",
+};
+var newAdmin = new User(credentials);
+User.findOne({ emailAddress: credentials.emailAddress })
+  .then(admin => {
+    if (!admin) {
+      newAdmin.save();
+    }
+  })
+  .catch(err => {
+    //console.log(err);
+  });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
