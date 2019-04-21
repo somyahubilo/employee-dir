@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Admin Theme : Master</title>
+	<!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+     <!-- Google Fonts-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+    <div id="wrapper">
+        <div class="row" style="margin-top:13%">
+            <div class="col-md-6 col-md-offset-3" style="background-color:white">
+                <div class="pannel panel-default" style="margin:2%">
+                    <div class="panel-heading">
+                        Login
+                    </div>
+                    <div class="panel-body">
+                        <form id="login-form" action="/login" method="POST">
+                        <div class="form-group">
+                            <label>Company Id</label>
+                            <input class="form-control" type="text" placeholder="Enter text" name="companyId">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input class="form-control" type="password" placeholder="password" name="password">
+                        </div>
+                        <a href="/signup">Register</a>
+                        <button type="submit" class="btn btn-default">Submit Button</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- jQuery Js -->
+<script src="assets/js/jquery-1.10.2.js"></script>
+<!-- Bootstrap Js -->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- Metis Menu Js -->
+<script src="assets/js/jquery.metisMenu.js"></script>
+<!-- Custom Js -->
+<script src="assets/js/custom-scripts.js"></script>
+<script type="text/javascript" src="/javascripts/deparam.js"></script>
+<script>
+$('#login-form').submit(function (e) {
+    e.preventDefault();
+    var userObj = $.deparam($('#login-form').serialize());
+    $.post('/login', userObj, function (res) {
+        console.log(res);
+        if (res.code == 0) {
+            alert(res.message)
+        } else {
+            alert("Successfully logged in.")
+            location.reload();
+        }
+    });
+});
+</script>
+</body>
+</html>
