@@ -6,10 +6,10 @@ const logger = require('morgan');
 const bodyParser = require("body-parser");
 const mongoose  = require("mongoose");
 const session  = require("express-session");
-const MongoStore = require("connect-mongo")(session);
+const MongoStore = require("connect-mongo");
 
 const connection = mongoose.connect(
-  "mongodb://rikan1:rikan1@ds159204.mlab.com:59204/testdatabase",
+  "mongodb://mongo:27017/testdatabase",
   { useNewUrlParser: true }
 );
 
@@ -34,7 +34,9 @@ app.use(
     secret: "123test",
     saveUninitialized: true,
     resave: true,
-    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    store: MongoStore.create({
+      mongoUrl: "mongodb://mongo:27017/testdatabase"
+    }),
     cookie: { maxAge: 180 * 60 * 1000 }
   })
 );
